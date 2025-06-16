@@ -1,215 +1,317 @@
-
-
-
-<!--  ⚠️ THIS PAGE IS A GUIDE ON HOW TO USE RAFFAELLO -->
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>raffaello Tutorial</title>
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>La Croisée des Cœurs</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        .arrow {
-            position: absolute;
-            width: 100px;
-            height: 30px;
-            background-color: #3b82f6;
-            clip-path: polygon(0 40%, 80% 40%, 80% 20%, 100% 50%, 80% 80%, 80% 60%, 0 60%);
-        }
-        .tutorial-card {
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-        .tutorial-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-        .icon-container {
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 12px;
-            background-color: #e0f2fe;
-        }
+      /* Gold background utility */
+      .bg-gold {
+        background-color: #d4af37;
+      }
+      /* Slide base */
+      .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+        z-index: 1;
+      }
+      .slide.active {
+        opacity: 1;
+        z-index: 2;
+      }
     </style>
-</head>
-<body class="bg-gray-50 min-h-screen p-8">
-    <div class="max-w-6xl mx-auto">
-        <header class="text-center mb-12">
-            <h1 class="text-4xl font-bold text-blue-600 mb-4">Welcome Ralph N.,</h1>
-            <p class="text-xl text-gray-600">Here is a quick guide on how to use raffaello</p>
-        </header>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- File Management -->
-            <div class="tutorial-card bg-white rounded-xl p-6 relative">
-                <div class="flex items-center mb-4">
-                    <div class="icon-container mr-4">
-                        <i data-lucide="files" class="text-blue-500"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold">1. File Management</h3>
-                </div>
-                <p class="text-gray-600 mb-4">Start by creating a new file or selecting an existing one from your project.</p>
-                <div class="flex items-center text-sm text-blue-600">
-                    <i data-lucide="folder-open-dot" class="mr-2"></i>
-                    <span>Files Explorer</span>
-                </div>
-                <div class="arrow" style="right: -80px; top: 50px; transform: rotate(90deg);"></div>
-            </div>
-
-            <!-- Code Editor -->
-            <div class="tutorial-card bg-white rounded-xl p-6 relative">
-                <div class="flex items-center mb-4">
-                    <div class="icon-container mr-4">
-                        <i data-lucide="code" class="text-blue-500"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold">2. Code Editor</h3>
-                </div>
-                <p class="text-gray-600 mb-4">Edit your code with our powerful editor. See changes instantly in the preview.</p>
-                <div class="flex items-center text-sm text-blue-600">
-                    <i data-lucide="code" class="mr-2"></i>
-                    <span>Code Tab</span>
-                </div>
-            </div>
-
-            <!-- Visual Editor -->
-            <div class="tutorial-card bg-white rounded-xl p-6 relative">
-                <div class="flex items-center mb-4">
-                    <div class="icon-container mr-4">
-                        <i data-lucide="mouse-pointer-click" class="text-blue-500"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold">3. Visual Editing</h3>
-                </div>
-                <p class="text-gray-600 mb-4">Toggle the selector tool to edit elements visually. Changes reflect in code.</p>
-                <div class="flex items-center text-sm text-blue-600">
-                    <i data-lucide="mouse-pointer-click" class="mr-2"></i>
-                    <span>Selector Tool</span>
-                </div>
-            </div>
-
-            <!-- AI Assistance -->
-            <div class="tutorial-card bg-white rounded-xl p-6 relative">
-                <div class="flex items-center mb-4">
-                    <div class="icon-container mr-4">
-                        <i data-lucide="circle-user" class="text-blue-500"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold">4. AI Assistance</h3>
-                </div>
-                <p class="text-gray-600 mb-4">Ask our AI chatbot for help with code, design, or any questions.</p>
-                <div class="flex items-center text-sm text-blue-600">
-                    <i data-lucide="message-circle" class="mr-2"></i>
-                    <span>AI Chat (Bottom Left)</span>
-                </div>
-            </div>
-
-            <!-- Save Changes -->
-            <div class="tutorial-card bg-white rounded-xl p-6 relative">
-                <div class="flex items-center mb-4">
-                    <div class="icon-container mr-4">
-                        <i data-lucide="save" class="text-blue-500"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold">5. Save Your Work</h3>
-                </div>
-                <p class="text-gray-600 mb-4">Regularly save your changes to preserve your progress.</p>
-                <div class="flex items-center text-sm text-blue-600">
-                    <i data-lucide="save" class="mr-2"></i>
-                    <span>Save Button</span>
-                </div>
-            </div>
-
-            <!-- GitHub Integration -->
-            <div class="tutorial-card bg-white rounded-xl p-6 relative">
-                <div class="flex items-center mb-4">
-                    <div class="icon-container mr-4">
-                        <i data-lucide="github" class="text-blue-500"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold">6. GitHub Integration</h3>
-                </div>
-                <p class="text-gray-600 mb-4">Push changes to GitHub, deploy to Pages, and manage branches.</p>
-                <div class="flex items-center text-sm text-blue-600">
-                    <i data-lucide="github" class="mr-2"></i>
-                    <span>GitHub Section</span>
-                </div>
-            </div>
-
-            <!-- Branch Management -->
-            <div class="tutorial-card bg-white rounded-xl p-6 relative">
-                <div class="flex items-center mb-4">
-                    <div class="icon-container mr-4">
-                        <i data-lucide="git-branch" class="text-blue-500"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold">7. Branch Management</h3>
-                </div>
-                <p class="text-gray-600 mb-4">Create and switch between branches for different features.</p>
-                <div class="flex items-center text-sm text-blue-600">
-                    <i data-lucide="git-branch" class="mr-2"></i>
-                    <span>Branch Selector (Bottom Right)</span>
-                </div>
-            </div>
-
-            <!-- Deployment -->
-            <div class="tutorial-card bg-white rounded-xl p-6 relative">
-                <div class="flex items-center mb-4">
-                    <div class="icon-container mr-4">
-                        <i data-lucide="github" class="text-blue-500"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold">8. Deployment</h3>
-                </div>
-                <p class="text-gray-600 mb-4">Deploy to GitHub Pages to see your website live on the internet.</p>
-                <div class="flex items-center text-sm text-blue-600">
-                    <i data-lucide="globe" class="mr-2"></i>
-                    <span>Deploy Button</span>
-                </div>
-            </div>
-
-            <!-- Credits -->
-            <div class="tutorial-card bg-white rounded-xl p-6 relative">
-                <div class="flex items-center mb-4">
-                    <div class="icon-container mr-4">
-                        <i data-lucide="coins" class="text-blue-500"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold">9. Credit System</h3>
-                </div>
-                <p class="text-gray-600 mb-4">Track and top up your credits for AI features and premium tools.</p>
-                <div class="flex items-center text-sm text-blue-600">
-                    <i data-lucide="coins" class="mr-2"></i>
-                    <span>Credit Tracker (Bottom Right)</span>
-                </div>
-            </div>
+  </head>
+  <body class="overflow-hidden relative">
+    <div id="slider">
+      <!-- Slide 1 -->
+      <section class="slide active">
+        <div class="flex h-full flex-col md:flex-row">
+          <div
+            class="slide-image w-full md:w-1/2 bg-cover bg-center"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?...&quot;);
+            "
+          ></div>
+          <div
+            class="slide-text w-full md:w-1/2 bg-gold bg-opacity-80 text-black p-8 flex flex-col justify-center"
+          >
+            <h1 class="text-4xl font-bold mb-4">La Croisée des Cœurs</h1>
+            <h2 class="text-2xl mb-4">Introduction</h2>
+            <p class="mb-2">
+              Dans 5 ans, j’entamerai ma retraite avec à la fois enthousiasme et
+              appréhension.
+            </p>
+            <ul class="list-disc pl-5 space-y-1">
+              <li>≈ 1 000 000 futurs retraités en 3 ans</li>
+              <li>Âge médian Gatineau : 40 ans</li>
+            </ul>
+          </div>
         </div>
+      </section>
 
-        <div class="mt-16 bg-white rounded-xl p-8 text-center">
-            <h2 class="text-2xl font-bold text-blue-600 mb-4">Quick Start Guide</h2>
-            <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8 mb-8">
-                <div class="flex items-center">
-                    <div class="bg-blue-100 text-blue-600 rounded-full w-8 h-8 flex items-center justify-center mr-2">1</div>
-                    <span>Create/Select File</span>
-                </div>
-                <i data-lucide="arrow-right" class="hidden md:block text-gray-400"></i>
-                <div class="flex items-center">
-                    <div class="bg-blue-100 text-blue-600 rounded-full w-8 h-8 flex items-center justify-center mr-2">2</div>
-                    <span>Edit Code or Visually</span>
-                </div>
-                <i data-lucide="arrow-right" class="hidden md:block text-gray-400"></i>
-                <div class="flex items-center">
-                    <div class="bg-blue-100 text-blue-600 rounded-full w-8 h-8 flex items-center justify-center mr-2">3</div>
-                    <span>Save & Deploy</span>
-                </div>
-            </div>
-            
+      <!-- Slide 2 -->
+      <section class="slide">
+        <div class="flex h-full flex-col md:flex-row">
+          <div
+            class="slide-image w-full md:w-1/2 bg-cover bg-center"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1522071820081-009f0129c71c?...&quot;);
+            "
+          ></div>
+          <div
+            class="slide-text w-full md:w-1/2 bg-gold bg-opacity-80 text-black p-8 flex flex-col justify-center"
+          >
+            <h2 class="text-2xl font-semibold mb-4">Équipe</h2>
+            <ul class="list-disc pl-5 space-y-2 text-lg">
+              <li><strong>Renilde</strong> : vision réaliste & engagée</li>
+              <li><strong>Gérard</strong> : expert en gestion & finance</li>
+              <li>
+                <strong>Ralph</strong> : tech & échanges intergénérationnels
+              </li>
+            </ul>
+          </div>
         </div>
-        <footer class="mt-16 text-center text-gray-500 text-sm">
-            <p class="mt-2">© 2025 raffaello Editor. All rights reserved.</p>
-        </footer>
+      </section>
+
+      <!-- Slide 3 -->
+      <section class="slide">
+        <div class="flex h-full flex-col md:flex-row">
+          <div
+            class="slide-image w-full md:w-1/2 bg-cover bg-center"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1573497491208-6b1acb260507?...&quot;);
+            "
+          ></div>
+          <div
+            class="slide-text w-full md:w-1/2 bg-gold bg-opacity-80 text-black p-8 flex flex-col justify-center"
+          >
+            <h2 class="text-2xl font-semibold mb-4">Problème</h2>
+            <ul class="list-disc pl-5 space-y-2 text-lg">
+              <li>Espérance de vie > 83 ans (QC)</li>
+              <li>30 % des aînés à risque d’isolement</li>
+              <li>1 aidant sur 3 en détresse</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 4 -->
+      <section class="slide">
+        <div class="flex h-full flex-col md:flex-row">
+          <div
+            class="slide-image w-full md:w-1/2 bg-cover bg-center"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1522202176988-66273c2fd55f?...&quot;);
+            "
+          ></div>
+          <div
+            class="slide-text w-full md:w-1/2 bg-gold bg-opacity-80 text-black p-8 flex flex-col justify-center"
+          >
+            <h2 class="text-2xl font-semibold mb-4">Avantages</h2>
+            <ul class="list-disc pl-5 space-y-2 text-lg">
+              <li>Communauté bienveillante</li>
+              <li>Accueil de jour et mentorat</li>
+              <li>Retarder l’entrée en CHSLD</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 5 -->
+      <section class="slide">
+        <div class="flex h-full flex-col md:flex-row">
+          <div
+            class="slide-image w-full md:w-1/2 bg-cover bg-center"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?...&quot;);
+            "
+          ></div>
+          <div
+            class="slide-text w-full md:w-1/2 bg-gold bg-opacity-80 text-black p-8 flex flex-col justify-center"
+          >
+            <h2 class="text-2xl font-semibold mb-4">Solution</h2>
+            <ul class="list-disc pl-5 space-y-2 text-lg">
+              <li>Approche Montessori personnalisée</li>
+              <li>Soutien aux aidants</li>
+              <li>Connexion intergénérationnelle</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 6 -->
+      <section class="slide">
+        <div class="flex h-full flex-col md:flex-row">
+          <div
+            class="slide-image w-full md:w-1/2 bg-cover bg-center"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1523050854058-8df90110c9f1?...&quot;);
+            "
+          ></div>
+          <div
+            class="slide-text w-full md:w-1/2 bg-gold bg-opacity-80 text-black p-8 flex flex-col justify-center"
+          >
+            <h2 class="text-2xl font-semibold mb-4">Services</h2>
+            <ul class="list-disc pl-5 space-y-2 text-lg">
+              <li>Activités sociales, culturelles & cognitives</li>
+              <li>Répit de jour pour aidants</li>
+              <li>Maintien à domicile</li>
+              <li>Mentorat intergénérationnel</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 7 -->
+      <section class="slide">
+        <div class="flex h-full flex-col md:flex-row">
+          <div
+            class="slide-image w-full md:w-1/2 bg-cover bg-center"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1434626881859-194d67b2b86f?...&quot;);
+            "
+          ></div>
+          <div
+            class="slide-text w-full md:w-1/2 bg-gold bg-opacity-80 text-black p-8 flex flex-col justify-center"
+          >
+            <h2 class="text-2xl font-semibold mb-4">Marché</h2>
+            <ul class="list-disc pl-5 space-y-2 text-lg">
+              <li>1,8 M Québécois 65 ans +</li>
+              <li>30 % vivent seuls</li>
+              <li>Âge moyen CHSLD : 84 ans</li>
+              <li>+ 100 familles gatinoises concernées</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 8 -->
+      <section class="slide">
+        <div class="flex h-full flex-col md:flex-row">
+          <div
+            class="slide-image w-full md:w-1/2 bg-cover bg-center"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1551288049-bebda4e38f71?...&quot;);
+            "
+          ></div>
+          <div
+            class="slide-text w-full md:w-1/2 bg-gold bg-opacity-80 text-black p-8 flex flex-col justify-center"
+          >
+            <h2 class="text-2xl font-semibold mb-4">Modèle d’affaires</h2>
+            <ul class="list-disc pl-5 space-y-2 text-lg">
+              <li>Revenus : frais, services, partenariats</li>
+              <li>Subventions : Appui, Gatineau, QADA, Centraide</li>
+              <li>Dons & contributions privées</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 9 -->
+      <section class="slide">
+        <div class="flex h-full flex-col md:flex-row">
+          <div
+            class="slide-image w-full md:w-1/2 bg-cover bg-center"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1504384308090-c894fdcc538d?...&quot;);
+            "
+          ></div>
+          <div
+            class="slide-text w-full md:w-1/2 bg-gold bg-opacity-80 text-black p-8 flex flex-col justify-center"
+          >
+            <h2 class="text-2xl font-semibold mb-4">Pourquoi exister</h2>
+            <ul class="list-disc pl-5 space-y-2 text-lg">
+              <li>Réponse concrète au vieillissement</li>
+              <li>Moins d’hospitalisations & placements</li>
+              <li>Lien social intergénérationnel</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 10 -->
+      <section class="slide">
+        <div class="flex h-full flex-col md:flex-row">
+          <div
+            class="slide-image w-full md:w-1/2 bg-cover bg-center"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1523240795612-9a054b0db644?...&quot;);
+            "
+          ></div>
+          <div
+            class="slide-text w-full md:w-1/2 bg-gold bg-opacity-80 text-black p-8 flex flex-col justify-center"
+          >
+            <h2 class="text-2xl font-semibold mb-4">
+              Investissements recherchés
+            </h2>
+            <ul class="list-disc pl-5 space-y-2 text-lg mb-6">
+              <li>Partenariats : CISSS, CLSC, écoles</li>
+              <li>Bénévoles : jeunes, retraités, pros</li>
+              <li>Financement pour démarrage</li>
+              <li>Local accessible & sécurisé</li>
+            </ul>
+            <p class="text-xl font-bold">
+              Prêts à démarrer ? Aidez-nous à ouvrir la première maison à
+              Gatineau. Merci.
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
+
+    <!-- Navigation -->
+    <div
+      class="nav fixed bottom-8 w-full flex justify-center items-center gap-8 z-50"
+    >
+      <button
+        id="prev"
+        class="bg-white bg-opacity-80 hover:bg-opacity-100 text-gray-800 font-semibold py-2 px-4 rounded"
+      >
+        Précédent
+      </button>
+      <span id="indicator" class="text-white text-lg font-medium">1/10</span>
+      <button
+        id="next"
+        class="bg-white bg-opacity-80 hover:bg-opacity-100 text-gray-800 font-semibold py-2 px-4 rounded"
+      >
+        Suivant
+      </button>
+    </div>
+
+    <!-- JavaScript -->
     <script>
-        lucide.createIcons();
+      document.addEventListener("DOMContentLoaded", () => {
+        const slides = document.querySelectorAll(".slide");
+        const prev = document.getElementById("prev");
+        const next = document.getElementById("next");
+        const indicator = document.getElementById("indicator");
+        let idx = 0,
+          total = slides.length;
+
+        function show() {
+          slides.forEach((s, i) => s.classList.toggle("active", i === idx));
+          indicator.textContent = `${idx + 1}/${total}`;
+        }
+        next.addEventListener("click", () => {
+          idx = (idx + 1) % total;
+          show();
+        });
+        prev.addEventListener("click", () => {
+          idx = (idx - 1 + total) % total;
+          show();
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowRight") next.click();
+          if (e.key === "ArrowLeft") prev.click();
+        });
+        show();
+      });
     </script>
-</body>
-</html> 
+  </body>
+</html>
