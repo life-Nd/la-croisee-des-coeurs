@@ -1,324 +1,404 @@
-<!doctype html>
-<html lang="fr">
-  <head>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>La Croisée des Cœurs</title>
+    <title>La Croisée des Cœurs - Un nouveau départ pour la retraite</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Roboto:wght@300;400;500&amp;display=swap" rel="stylesheet" />
     <style>
-      /* Gold background utility */
-      .bg-gold {
-        background-color: #d4af37;
-      }
-      /* Slide base */
-      .slide {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        opacity: 0;
-        transition: opacity 0.5s ease-in-out;
-        z-index: 1;
-      }
-      .slide.active {
-        opacity: 1;
-        z-index: 2;
-      }
-    </style>
-  </head>
-  <body class="overflow-hidden relative">
-    <div id="slider">
-      <!-- Slide 1 -->
-      <section class="slide active">
-        <div class="flex h-full flex-col md:flex-row">
-          <div
-            class="slide-image w-full md:w-1/2 bg-cover bg-center"
-            style="
-              background-image: url(&quot;https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?...&quot;);
-            "
-          ></div>
-          <div
-            class="slide-text w-full md:w-1/2 bg-gold bg-opacity-80 text-black p-8 flex flex-col justify-center"
-          >
-            <h1 class="text-4xl font-bold mb-4">La Croisée des Cœurs</h1>
-            <h2 class="text-2xl mb-4">Introduction</h2>
-            <p class="mb-2">
-              Dans 5 ans, j’entamerai ma retraite avec à la fois enthousiasme et
-              appréhension.
-            </p>
-            <ul class="list-disc pl-5 space-y-1">
-              <li>≈ 1 000 000 futurs retraités en 3 ans</li>
-              <li>Âge médian Gatineau : 40 ans</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- Slide 2 -->
-      <section class="slide">
-        <div class="flex h-full flex-col md:flex-row">
-          <div
-            class="slide-image w-full md:w-1/2 bg-cover bg-center"
-            style="
-              background-image: url(&quot;https://images.unsplash.com/photo-1522071820081-009f0129c71c?...&quot;);
-            "
-          ></div>
-          <div
-            class="slide-text w-full md:w-1/2 bg-gold bg-opacity-80 text-black p-8 flex flex-col justify-center"
-          >
-            <h2 class="text-2xl font-semibold mb-4">Équipe</h2>
-            <ul class="list-disc pl-5 space-y-2 text-lg">
-              <li><strong>Renilde</strong> : vision réaliste & engagée</li>
-              <li><strong>Gérard</strong> : expert en gestion & finance</li>
-              <li>
-                <strong>Ralph</strong> : tech & échanges intergénérationnels
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- Slide 3 -->
-      <section class="slide">
-        <div class="flex h-full flex-col md:flex-row">
-          <div
-            class="slide-image w-full md:w-1/2 bg-cover bg-center"
-            style="
-              background-image: url(&quot;https://images.unsplash.com/photo-1573497491208-6b1acb260507?...&quot;);
-            "
-          ></div>
-          <div
-            class="slide-text w-full md:w-1/2 bg-gold bg-opacity-80 text-black p-8 flex flex-col justify-center"
-          >
-            <h2 class="text-2xl font-semibold mb-4">Problème</h2>
-            <ul class="list-disc pl-5 space-y-2 text-lg">
-              <li>Plus de 1 million de nouveaux retraités dans les prochains 3 ans</li>
-              <li>Espérance de vie > 83 ans (QC)</li>
-              <li>30 % des aînés à risque d’isolement</li>
-              <li>1 aidant sur 3 en détresse</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- Slide 4 -->
-      <section class="slide">
-        <div class="flex h-full flex-col md:flex-row">
-          <div
-            class="slide-image w-full md:w-1/2 bg-cover bg-center"
-            style="
-              background-image: url(&quot;https://images.unsplash.com/photo-1522202176988-66273c2fd55f?...&quot;);
-            "
-          ></div>
-          <div
-            class="slide-text w-full md:w-1/2 bg-gold bg-opacity-80 text-black p-8 flex flex-col justify-center"
-          >
-            <h2 class="text-2xl font-semibold mb-4">Avantages</h2>
-            <ul class="list-disc pl-5 space-y-2 text-lg">
-              <li>Communauté bienveillante</li>
-              <li>Accueil de jour et mentorat</li>
-              <li>Retarder l’entrée en CHSLD</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- Slide 5 -->
-      <section class="slide">
-        <div class="flex h-full flex-col md:flex-row">
-          <div
-            class="slide-image w-full md:w-1/2 bg-cover bg-center"
-            style="
-              background-image: url(&quot;https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?...&quot;);
-            "
-          ></div>
-          <div
-            class="slide-text w-full md:w-1/2 bg-gold bg-opacity-80 text-black p-8 flex flex-col justify-center"
-          >
-            <h2 class="text-2xl font-semibold mb-4">Solution</h2>
-            <ul class="list-disc pl-5 space-y-2 text-lg">
-              <li>Approche Montessori personnalisée</li>
-              <li>Soutien aux aidants</li>
-              <li>Connexion intergénérationnelle</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- Slide 6 -->
-      <section class="slide">
-        <div class="flex h-full flex-col md:flex-row">
-          <div
-            class="slide-image w-full md:w-1/2 bg-cover bg-center"
-            style="
-              background-image: url(&quot;https://images.unsplash.com/photo-1523050854058-8df90110c9f1?...&quot;);
-            "
-          ></div>
-          <div
-            class="slide-text w-full md:w-1/2 bg-gold bg-opacity-80 text-black p-8 flex flex-col justify-center"
-          >
-            <h2 class="text-2xl font-semibold mb-4">Services</h2>
-            <ul class="list-disc pl-5 space-y-2 text-lg">
-              <li>Activités sociales, culturelles & cognitives</li>
-              <li>Répit de jour pour aidants</li>
-              <li>Maintien à domicile</li>
-              <li>Mentorat intergénérationnel</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- Slide 7 -->
-      <section class="slide">
-        <div class="flex h-full flex-col md:flex-row">
-          <div
-            class="slide-image w-full md:w-1/2 bg-cover bg-center"
-            style="
-              background-image: url(&quot;https://images.unsplash.com/photo-1434626881859-194d67b2b86f?...&quot;);
-            "
-          ></div>
-          <div
-            class="slide-text w-full md:w-1/2 bg-gold bg-opacity-80 text-black p-8 flex flex-col justify-center"
-          >
-            <h2 class="text-2xl font-semibold mb-4">Marché</h2>
-            <ul class="list-disc pl-5 space-y-2 text-lg">
-              <li>1,8 M Québécois 65 ans +</li>
-              <li>30 % vivent seuls</li>
-              <li>Âge moyen CHSLD : 84 ans</li>
-              <li>Plusieurs centaines de familles gatinoises concernées</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- Slide 8 -->
-      <section class="slide">
-        <div class="flex h-full flex-col md:flex-row">
-          <div
-            class="slide-image w-full md:w-1/2 bg-cover bg-center"
-            style="
-              background-image: url(&quot;https://images.unsplash.com/photo-1551288049-bebda4e38f71?...&quot;);
-            "
-          ></div>
-          <div
-            class="slide-text w-full md:w-1/2 bg-gold bg-opacity-80 text-black p-8 flex flex-col justify-center"
-          >
-            <h2 class="text-2xl font-semibold mb-4">Modèle d’affaires</h2>
-            <ul class="list-disc pl-5 space-y-2 text-lg">
-              <li>Revenus : frais, services, partenariats</li>
-              <li>Subventions : Appui, Gatineau, QADA, Centraide</li>
-              <li>Dons & contributions privées</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- Slide 9 -->
-      <section class="slide">
-        <div class="flex h-full flex-col md:flex-row">
-          <div
-            class="slide-image w-full md:w-1/2 bg-cover bg-center"
-            style="
-              background-image: url(&quot;https://images.unsplash.com/photo-1504384308090-c894fdcc538d?...&quot;);
-            "
-          ></div>
-          <div
-            class="slide-text w-full md:w-1/2 bg-gold bg-opacity-80 text-black p-8 flex flex-col justify-center"
-          >
-            <h2 class="text-2xl font-semibold mb-4">Pourquoi exister</h2>
-            <ul class="list-disc pl-5 space-y-2 text-lg">
-              <li>Réponse concrète au vieillissement</li>
-              <li>Moins d’hospitalisations & placements</li>
-              <li>Lien social intergénérationnel</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- Slide 10 -->
-      <section class="slide">
-        <div class="flex h-full flex-col md:flex-row">
-          <div
-            class="slide-image w-full md:w-1/2 bg-cover bg-center"
-            style="
-              background-image: url(&quot;https://images.unsplash.com/photo-1523240795612-9a054b0db644?...&quot;);
-            "
-          ></div>
-          <div
-            class="slide-text w-full md:w-1/2 bg-gold bg-opacity-80 text-black p-8 flex flex-col justify-center"
-          >
-            <h2 class="text-2xl font-semibold mb-4">
-              Investissements recherchés
-            </h2>
-            <ul class="list-disc pl-5 space-y-2 text-lg mb-6">
-              <li>Partenariats : CISSS, CLSC, écoles</li>
-              <li>Bénévoles : jeunes, retraités, pros</li>
-              <li>Financement pour démarrage</li>
-              <li>Local accessible & sécurisé</li>
-            </ul>
-            <p class="text-xl font-bold">
-              Prêts à démarrer ? Aidez-nous à ouvrir la première maison à
-              Gatineau.
-            </p>
-          </div>
-        </div>
-      </section>
-            <!-- Slide 11 - Merci -->
-      <section class="slide">
-        <div class="flex h-full items-center justify-center bg-gold bg-opacity-90 text-black p-10">
-          <h2 class="text-4xl font-bold text-center">Merci ! Avez-vous des questions ?</h2>
-        </div>
-      </section>
-    </div>
-
-    <!-- Navigation -->
-    <div
-      class="nav fixed bottom-8 w-full flex justify-center items-center gap-8 z-50"
-    >
-      <button
-        id="prev"
-        class="bg-white bg-opacity-80 hover:bg-opacity-100 text-gray-800 font-semibold py-2 px-4 rounded"
-      >
-        Précédent
-      </button>
-      <span id="indicator" class="text-white text-lg font-medium">1/10</span>
-      <button
-        id="next"
-        class="bg-white bg-opacity-80 hover:bg-opacity-100 text-gray-800 font-semibold py-2 px-4 rounded"
-      >
-        Suivant
-      </button>
-    </div>
-
-    <!-- JavaScript -->
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const slides = document.querySelectorAll(".slide");
-        const prev = document.getElementById("prev");
-        const next = document.getElementById("next");
-        const indicator = document.getElementById("indicator");
-        let idx = 0,
-          total = slides.length;
-
-        function show() {
-          slides.forEach((s, i) => s.classList.toggle("active", i === idx));
-          indicator.textContent = `${idx + 1}/${total}`;
+        body {
+            font-family: 'Roboto', sans-serif;
         }
-        next.addEventListener("click", () => {
-          idx = (idx + 1) % total;
-          show();
+        .title-font {
+            font-family: 'Playfair Display', serif;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #F9F5FF 0%, #E4D8FD 100%);
+        }
+        .section-divider {
+            height: 100px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23f9f5ff' fill-opacity='1' d='M0,160L48,165.3C96,171,192,181,288,181.3C384,181,480,171,576,170.7C672,171,768,181,864,192C960,203,1056,213,1152,197.3C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") center/cover no-repeat;
+        }
+        .team-card {
+            transition: transform 0.3s ease;
+        }
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #8B5CF6;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <span class="text-purple-600 title-font text-2xl font-bold">La Croisée des Cœurs</span>
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                    <a href="#apropos" class="text-gray-700 hover:text-purple-600 px-3 py-2 text-sm font-medium">À propos</a>
+                    <a href="#equipe" class="text-gray-700 hover:text-purple-600 px-3 py-2 text-sm font-medium">Équipe</a>
+                    <a href="#services" class="text-gray-700 hover:text-purple-600 px-3 py-2 text-sm font-medium">Services</a>
+                    <a href="#contact" class="text-gray-700 hover:text-purple-600 px-3 py-2 text-sm font-medium">Contact</a>
+                    <a href="#participer" class="bg-purple-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-purple-700">Participer</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-gradient">
+        <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="title-font text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+                    <span class="block">La retraite,</span>
+                    <span class="block text-purple-600" style="left: 9px;">un nouveau départ</span>
+                </h1>
+                <p class="mt-3 max-w-md mx-auto text-base text-gray-600 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+                    Une communauté bienveillante où les générations se rencontrent, partagent et s'épanouissent ensemble.
+                </p>
+                <div class="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
+                    <div class="rounded-md shadow">
+                        <a href="#services" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 md:py-4 md:text-lg md:px-10">
+                            Découvrir nos services
+                        </a>
+                    </div>
+                    <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
+                        <a href="#participer" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-purple-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10">
+                            Nous soutenir
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <div id="apropos" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="title-font text-base text-purple-600 font-semibold tracking-wide uppercase">Notre mission</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Redéfinir la retraite
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-600 lg:mx-auto">
+                    « ET SI LA RETRAITE DEVENAIT UN NOUVEAU DÉPART, UN TEMPS POUR TRANSMETTRE, PARTAGER ET VIVRE PLEINEMENT ? »
+                </p>
+            </div>
+
+            <div class="mt-10">
+                <div class="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="title-font text-lg font-medium text-gray-900 mb-4">Le défi</h3>
+                        <p class="text-gray-600">
+                            La population vieillit. Au Québec, l'espérance de vie dépasse 83 ans, mais les options de vie après 65 ans sont très limitées. Près de 30% des aînés sont à risque d'isolement et plus d'un aidant sur trois souffre de détresse.
+                        </p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="title-font text-lg font-medium text-gray-900 mb-4">Notre solution</h3>
+                        <p class="text-gray-600">
+                            Nous créons une communauté bienveillante et active. Un accueil de jour où les aînés, les proches aidants et les jeunes interagissent. Nous voulons retarder l'entrée en CHSLD et offrir une vie sociale, intellectuelle et humaine.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Section -->
+    <div id="equipe" class="py-16 bg-purple-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="title-font text-base text-purple-600 font-semibold tracking-wide uppercase">L'équipe</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Rencontrez notre équipe
+                </p>
+            </div>
+
+            <div class="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="px-6 py-8">
+                        <div class="h-24 w-24 rounded-full bg-purple-100 mx-auto flex items-center justify-center text-purple-600 text-2xl font-bold mb-4">R</div>
+                        <h3 class="title-font text-xl font-medium text-gray-900 text-center">Renilde</h3>
+                        <p class="text-purple-600 text-center">Fondatrice</p>
+                        <p class="mt-3 text-gray-600 text-center">
+                            Entrepreneure en immobilier, passionnée du social et du secteur communautaire. Proche de la retraite, j'apporte une vision réaliste et engagée.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="px-6 py-8">
+                        <div class="h-24 w-24 rounded-full bg-purple-100 mx-auto flex items-center justify-center text-purple-600 text-2xl font-bold mb-4">G</div>
+                        <h3 class="title-font text-xl font-medium text-gray-900 text-center">Gérard</h3>
+                        <p class="text-purple-600 text-center">Expert comptable</p>
+                        <p class="mt-3 text-gray-600 text-center">
+                            Expert en comptabilité et gestion, passionné du domaine communautaire, calme et pragmatique, c'est notre monsieur « logique, rationnel et organisé ».
+                        </p>
+                    </div>
+                </div>
+
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="px-6 py-8">
+                        <div class="h-24 w-24 rounded-full bg-purple-100 mx-auto flex items-center justify-center text-purple-600 text-2xl font-bold mb-4">R</div>
+                        <h3 class="title-font text-xl font-medium text-gray-900 text-center">Ralph</h3>
+                        <p class="text-purple-600 text-center">Entrepreneur tech</p>
+                        <p class="mt-3 text-gray-600 text-center">
+                            Entrepreneur en technologie, convaincu de la richesse des échanges intergénérationnels. Il apporte sa créativité et sa passion pour la transmission du savoir.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <div id="services" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="title-font text-base text-purple-600 font-semibold tracking-wide uppercase">Nos services</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Une approche holistique
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-600 lg:mx-auto">
+                    Inspiré du modèle Montessori, adapté aux personnes en âge d'or.
+                </p>
+            </div>
+
+            <div class="mt-10">
+                <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+                    <div class="bg-gray-50 p-6 rounded-lg text-center">
+                        <div class="service-icon rounded-full mx-auto mb-4 flex items-center justify-center text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="title-font text-lg font-medium text-gray-900 mb-2">Activités sociales</h3>
+                        <p class="text-gray-600">
+                            Musées, lectures publiques, yoga et bien plus pour stimuler le corps et l'esprit.
+                        </p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg text-center">
+                        <div class="service-icon rounded-full mx-auto mb-4 flex items-center justify-center text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                            </svg>
+                        </div>
+                        <h3 class="title-font text-lg font-medium text-gray-900 mb-2">Répit pour aidants</h3>
+                        <p class="text-gray-600">
+                            Des moments de répit bien mérités pour les proches aidants qui en ont besoin.
+                        </p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg text-center">
+                        <div class="service-icon rounded-full mx-auto mb-4 flex items-center justify-center text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                            </svg>
+                        </div>
+                        <h3 class="title-font text-lg font-medium text-gray-900 mb-2">Maintien à domicile</h3>
+                        <p class="text-gray-600">
+                            Services complémentaires pour les aînés légèrement en perte d'autonomie.
+                        </p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg text-center">
+                        <div class="service-icon rounded-full mx-auto mb-4 flex items-center justify-center text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                            </svg>
+                        </div>
+                        <h3 class="title-font text-lg font-medium text-gray-900 mb-2">Mentorat</h3>
+                        <p class="text-gray-600">
+                            Les retraités deviennent des transmetteurs du savoir aux jeunes générations.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="bg-purple-600 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+                <div class="text-center">
+                    <p class="text-4xl font-extrabold">1.8M+</p>
+                    <p class="mt-2 text-sm font-medium">Québécois de 65+ ans</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-4xl font-extrabold">30%</p>
+                    <p class="mt-2 text-sm font-medium">Vivent seuls</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-4xl font-extrabold">84</p>
+                    <p class="mt-2 text-sm font-medium">Âge moyen d'entrée en CHSLD</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-4xl font-extrabold">1/3</p>
+                    <p class="mt-2 text-sm font-medium">Aidants en détresse</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div id="participer" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-purple-50 rounded-lg shadow-xl overflow-hidden">
+                <div class="pt-10 pb-12 px-6 sm:pt-16 sm:px-16 lg:py-16 lg:pr-0 xl:py-20 xl:px-20">
+                    <div class="lg:self-center">
+                        <h2 class="title-font text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                            <span class="block">Prêt à nous soutenir ?</span>
+                        </h2>
+                        <p class="mt-4 text-lg leading-6 text-gray-600">
+                            Nous recherchons des partenaires, des bénévoles et du financement pour ouvrir notre première maison à Gatineau.
+                        </p>
+                        <a href="#contact" class="mt-8 bg-purple-600 border border-transparent rounded-md py-3 px-8 inline-flex items-center text-base font-medium text-white hover:bg-purple-700">
+                            Contactez-nous
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="title-font text-base text-purple-600 font-semibold tracking-wide uppercase">Contact</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Restons en contact
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-600 lg:mx-auto">
+                    Nous sommes prêts à démarrer. Aidez-nous à ouvrir la première maison.
+                </p>
+            </div>
+
+            <div class="mt-10 bg-white shadow-xl rounded-lg overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-2">
+                    <div class="py-10 px-6">
+                        <h3 class="title-font text-lg font-medium text-gray-900 mb-6">Envoyez-nous un message</h3>
+                        <form class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700">Nom</label>
+                                <input type="text" id="name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-purple-500 focus:border-purple-500" />
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                                <input type="email" id="email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-purple-500 focus:border-purple-500" />
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                                <textarea id="message" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-purple-500 focus:border-purple-500"></textarea>
+                            </div>
+                            <div>
+                                <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                                    Envoyer
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="bg-purple-50 py-10 px-6">
+                        <h3 class="title-font text-lg font-medium text-gray-900 mb-6">Informations de contact</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-6 w-6 text-purple-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                </div>
+                                <div class="ml-3 text-base text-gray-600">
+                                    <p>Gatineau, Québec</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-6 w-6 text-purple-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                    </svg>
+                                </div>
+                                <div class="ml-3 text-base text-gray-600">
+                                    <p>contact@croisee-des-coeurs.org</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+                <div class="space-y-8 xl:col-span-1">
+                    <span class="text-white title-font text-2xl font-bold">La Croisée des Cœurs</span>
+                    <p class="text-gray-300 text-base">
+                        Un pont entre les générations, une maison de vie et de sens.
+                    </p>
+                </div>
+                <div class="mt-12 grid grid-cols-1 gap-8 xl:col-span-2 xl:mt-0">
+                    <div class="md:grid md:grid-cols-3 md:gap-8">
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Navigation</h3>
+                            <ul class="mt-4 space-y-4">
+                                <li><a href="#apropos" class="text-base text-gray-300 hover:text-white">À propos</a></li>
+                                <li><a href="#equipe" class="text-base text-gray-300 hover:text-white">Équipe</a></li>
+                                <li><a href="#services" class="text-base text-gray-300 hover:text-white">Services</a></li>
+                                <li><a href="#contact" class="text-base text-gray-300 hover:text-white">Contact</a></li>
+                            </ul>
+                        </div>
+                        <div class="mt-12 md:mt-0">
+                            <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Services</h3>
+                            <ul class="mt-4 space-y-4">
+                                <li><a href="#" class="text-base text-gray-300 hover:text-white">Activités sociales</a></li>
+                                <li><a href="#" class="text-base text-gray-300 hover:text-white">Répit pour aidants</a></li>
+                                <li><a href="#" class="text-base text-gray-300 hover:text-white">Maintien à domicile</a></li>
+                                <li><a href="#" class="text-base text-gray-300 hover:text-white">Mentorat</a></li>
+                            </ul>
+                        </div>
+                        <div class="mt-12 md:mt-0">
+                            <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Nous soutenir</h3>
+                            <ul class="mt-4 space-y-4">
+                                <li><a href="#" class="text-base text-gray-300 hover:text-white">Devenir partenaire</a></li>
+                                <li><a href="#" class="text-base text-gray-300 hover:text-white">Faire un don</a></li>
+                                <li><a href="#" class="text-base text-gray-300 hover:text-white">Devenir bénévole</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-700 pt-8">
+                <p class="text-base text-gray-400 text-center">
+                    © 2025 La Croisée des Cœurs. Tous droits réservés.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor =&gt; {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
         });
-        prev.addEventListener("click", () => {
-          idx = (idx - 1 + total) % total;
-          show();
-        });
-        document.addEventListener("keydown", (e) => {
-          if (e.key === "ArrowRight") next.click();
-          if (e.key === "ArrowLeft") prev.click();
-        });
-        show();
-      });
+
+        // Mobile menu toggle would go here
     </script>
-  </body>
-</html>
+
+</body></html>
