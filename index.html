@@ -1,9 +1,11 @@
-<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>La Croisée des Cœurs - Un nouveau départ pour la retraite</title>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Croisée des Cœurs - Accueil</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Roboto:wght@300;400;500&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -12,384 +14,340 @@
             font-family: 'Playfair Display', serif;
         }
         .hero-gradient {
-            background: linear-gradient(135deg, #F9F5FF 0%, #E4D8FD 100%);
+            background: linear-gradient(135deg, #f9f7f7 0%, #dbe2ef 100%);
         }
-        .section-divider {
-            height: 100px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23f9f5ff' fill-opacity='1' d='M0,160L48,165.3C96,171,192,181,288,181.3C384,181,480,171,576,170.7C672,171,768,181,864,192C960,203,1056,213,1152,197.3C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") center/cover no-repeat;
+        .heart-icon {
+            color: #ff6b6b;
         }
-        .team-card {
-            transition: transform 0.3s ease;
+        .section-border {
+            border-bottom: 1px solid #e2e8f0;
         }
         .team-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
         .service-icon {
+            background-color: #f8f9fa;
             width: 60px;
             height: 60px;
-            background-color: #8B5CF6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto;
         }
     </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class="bg-white shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0 flex items-center">
-                        <span class="text-purple-600 title-font text-2xl font-bold">La Croisée des Cœurs</span>
-                    </div>
-                </div>
-                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
-                    <a href="#apropos" class="text-gray-700 hover:text-purple-600 px-3 py-2 text-sm font-medium">À propos</a>
-                    <a href="#equipe" class="text-gray-700 hover:text-purple-600 px-3 py-2 text-sm font-medium">Équipe</a>
-                    <a href="#services" class="text-gray-700 hover:text-purple-600 px-3 py-2 text-sm font-medium">Services</a>
-                    <a href="#contact" class="text-gray-700 hover:text-purple-600 px-3 py-2 text-sm font-medium">Contact</a>
-                    <a href="#participer" class="bg-purple-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-purple-700">Participer</a>
-                </div>
+    <nav class="bg-white shadow-md py-4">
+        <div class="container mx-auto px-4 md:px-6 flex justify-between items-center">
+            <div class="flex items-center">
+                <span class="heart-icon text-2xl mr-2">❤️</span>
+                <h1 class="title-font text-xl md:text-2xl font-bold text-gray-800">La Croisée des Cœurs</h1>
             </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="text-gray-700 hover:text-blue-600 transition">À propos</a>
+                <a href="#team" class="text-gray-700 hover:text-blue-600 transition">L'équipe</a>
+                <a href="#services" class="text-gray-700 hover:text-blue-600 transition">Services</a>
+                <a href="#contact" class="text-gray-700 hover:text-blue-600 transition">Contact</a>
+            </div>
+            <button class="md:hidden text-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <div class="hero-gradient">
-        <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <h1 class="title-font text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-                    <span class="block">La retraite,</span>
-                    <span class="block text-purple-600" style="left: 9px;">un nouveau départ</span>
-                </h1>
-                <p class="mt-3 max-w-md mx-auto text-base text-gray-600 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-                    Une communauté bienveillante où les générations se rencontrent, partagent et s'épanouissent ensemble.
-                </p>
-                <div class="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
-                    <div class="rounded-md shadow">
-                        <a href="#services" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 md:py-4 md:text-lg md:px-10">
-                            Découvrir nos services
-                        </a>
+    <section class="hero-gradient py-16 md:py-24">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h2 class="title-font text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6">Un nouveau départ pour la retraite</h2>
+                    <p class="text-lg text-gray-600 mb-8">Une communauté bienveillante où les générations se rencontrent, partagent et s'épanouissent ensemble.</p>
+                    <div class="flex space-x-4">
+                        <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition shadow-md">Nous contacter</a>
+                        <a href="#services" class="border border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg transition">Nos services</a>
                     </div>
-                    <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-                        <a href="#participer" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-purple-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10">
-                            Nous soutenir
-                        </a>
-                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="https://images.unsplash.com/photo-1527525443983-6e60c75fff46?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Générations ensemble" class="rounded-lg shadow-xl w-full max-w-md">
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- About Section -->
-    <div id="apropos" class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:text-center">
-                <h2 class="title-font text-base text-purple-600 font-semibold tracking-wide uppercase">Notre mission</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                    Redéfinir la retraite
+    <section id="about" class="py-16 section-border">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center mb-12">
+                <h2 class="title-font text-3xl md:text-4xl font-bold text-gray-800 mb-4">Qui sommes-nous ?</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            <div class="max-w-4xl mx-auto text-center">
+                <p class="text-lg text-gray-600 mb-8">
+                    La Croisée des Cœurs est née d'une conviction simple : la retraite devrait être un nouveau départ, un temps pour transmettre, partager et vivre pleinement. Nous créons des espaces où les aînés, les proches aidants et les jeunes peuvent interagir, apprendre et grandir ensemble.
                 </p>
-                <p class="mt-4 max-w-2xl text-xl text-gray-600 lg:mx-auto">
+                <blockquote class="border-l-4 border-blue-600 pl-6 my-8 italic text-gray-700 text-xl">
                     « ET SI LA RETRAITE DEVENAIT UN NOUVEAU DÉPART, UN TEMPS POUR TRANSMETTRE, PARTAGER ET VIVRE PLEINEMENT ? »
+                </blockquote>
+                <p class="text-lg text-gray-600">
+                    Face au vieillissement de la population et à l'isolement croissant des aînés, nous proposons une alternative humaine et chaleureuse aux solutions traditionnelles.
                 </p>
             </div>
+        </div>
+    </section>
 
-            <div class="mt-10">
-                <div class="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
-                    <div class="bg-gray-50 p-6 rounded-lg">
-                        <h3 class="title-font text-lg font-medium text-gray-900 mb-4">Le défi</h3>
-                        <p class="text-gray-600">
-                            La population vieillit. Au Québec, l'espérance de vie dépasse 83 ans, mais les options de vie après 65 ans sont très limitées. Près de 30% des aînés sont à risque d'isolement et plus d'un aidant sur trois souffre de détresse.
-                        </p>
-                    </div>
-                    <div class="bg-gray-50 p-6 rounded-lg">
-                        <h3 class="title-font text-lg font-medium text-gray-900 mb-4">Notre solution</h3>
-                        <p class="text-gray-600">
-                            Nous créons une communauté bienveillante et active. Un accueil de jour où les aînés, les proches aidants et les jeunes interagissent. Nous voulons retarder l'entrée en CHSLD et offrir une vie sociale, intellectuelle et humaine.
-                        </p>
-                    </div>
+    <!-- Problem Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <h2 class="title-font text-3xl font-bold text-gray-800 mb-6">Le défi actuel</h2>
+                    <ul class="space-y-4 text-gray-600">
+                        <li class="flex items-start">
+                            <span class="heart-icon mr-3">⚠️</span>
+                            <span>30% des aînés sont à risque d'isolement au Québec</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="heart-icon mr-3">⚠️</span>
+                            <span>1 aidant sur 3 souffre de détresse</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="heart-icon mr-3">⚠️</span>
+                            <span>Peu d'options de vie stimulantes après 65 ans</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="md:w-1/2 bg-white p-8 rounded-lg shadow-md">
+                    <h3 class="title-font text-2xl font-bold text-gray-800 mb-4">Notre solution</h3>
+                    <p class="text-gray-600 mb-4">Nous appliquons les principes Montessori aux personnes en âge d'or :</p>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <span class="heart-icon mr-3">✓</span>
+                            <span>Accompagnement personnalisé respectant le rythme de chacun</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="heart-icon mr-3">✓</span>
+                            <span>Communauté intergénérationnelle bienveillante</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="heart-icon mr-3">✓</span>
+                            <span>Alternative humaine aux structures traditionnelles</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- Team Section -->
-    <div id="equipe" class="py-16 bg-purple-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <h2 class="title-font text-base text-purple-600 font-semibold tracking-wide uppercase">L'équipe</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                    Rencontrez notre équipe
-                </p>
+    <section id="team" class="py-16 section-border">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center mb-12">
+                <h2 class="title-font text-3xl md:text-4xl font-bold text-gray-800 mb-4">Notre équipe</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto"></div>
             </div>
-
-            <div class="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="px-6 py-8">
-                        <div class="h-24 w-24 rounded-full bg-purple-100 mx-auto flex items-center justify-center text-purple-600 text-2xl font-bold mb-4">R</div>
-                        <h3 class="title-font text-xl font-medium text-gray-900 text-center">Renilde</h3>
-                        <p class="text-purple-600 text-center">Fondatrice</p>
-                        <p class="mt-3 text-gray-600 text-center">
-                            Entrepreneure en immobilier, passionnée du social et du secteur communautaire. Proche de la retraite, j'apporte une vision réaliste et engagée.
-                        </p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="team-card bg-white p-6 rounded-lg shadow-md transition duration-300">
+                    <div class="w-24 h-24 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-3xl">👨‍💼</span>
                     </div>
+                    <h3 class="text-xl font-bold text-center text-gray-800 mb-2">Gérard</h3>
+                    <p class="text-gray-600 text-center">Expert en comptabilité et gestion, notre monsieur « logique, rationnel et organisé ».</p>
                 </div>
-
-                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="px-6 py-8">
-                        <div class="h-24 w-24 rounded-full bg-purple-100 mx-auto flex items-center justify-center text-purple-600 text-2xl font-bold mb-4">G</div>
-                        <h3 class="title-font text-xl font-medium text-gray-900 text-center">Gérard</h3>
-                        <p class="text-purple-600 text-center">Expert comptable</p>
-                        <p class="mt-3 text-gray-600 text-center">
-                            Expert en comptabilité et gestion, passionné du domaine communautaire, calme et pragmatique, c'est notre monsieur « logique, rationnel et organisé ».
-                        </p>
+                <div class="team-card bg-white p-6 rounded-lg shadow-md transition duration-300">
+                    <div class="w-24 h-24 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-3xl">👨‍💻</span>
                     </div>
+                    <h3 class="text-xl font-bold text-center text-gray-800 mb-2">Ralph</h3>
+                    <p class="text-gray-600 text-center">Entrepreneur en technologie, passionné par les échanges intergénérationnels.</p>
                 </div>
-
-                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="px-6 py-8">
-                        <div class="h-24 w-24 rounded-full bg-purple-100 mx-auto flex items-center justify-center text-purple-600 text-2xl font-bold mb-4">R</div>
-                        <h3 class="title-font text-xl font-medium text-gray-900 text-center">Ralph</h3>
-                        <p class="text-purple-600 text-center">Entrepreneur tech</p>
-                        <p class="mt-3 text-gray-600 text-center">
-                            Entrepreneur en technologie, convaincu de la richesse des échanges intergénérationnels. Il apporte sa créativité et sa passion pour la transmission du savoir.
-                        </p>
+                <div class="team-card bg-white p-6 rounded-lg shadow-md transition duration-300">
+                    <div class="w-24 h-24 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-3xl">👩‍💼</span>
                     </div>
+                    <h3 class="text-xl font-bold text-center text-gray-800 mb-2">Renilde</h3>
+                    <p class="text-gray-600 text-center">Entrepreneure en immobilier, engagée pour améliorer le quotidien des aînés.</p>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- Services Section -->
-    <div id="services" class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <h2 class="title-font text-base text-purple-600 font-semibold tracking-wide uppercase">Nos services</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                    Une approche holistique
-                </p>
-                <p class="mt-4 max-w-2xl text-xl text-gray-600 lg:mx-auto">
-                    Inspiré du modèle Montessori, adapté aux personnes en âge d'or.
-                </p>
+    <section id="services" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center mb-12">
+                <h2 class="title-font text-3xl md:text-4xl font-bold text-gray-800 mb-4">Nos services</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto"></div>
             </div>
-
-            <div class="mt-10">
-                <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-                    <div class="bg-gray-50 p-6 rounded-lg text-center">
-                        <div class="service-icon rounded-full mx-auto mb-4 flex items-center justify-center text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-                            </svg>
-                        </div>
-                        <h3 class="title-font text-lg font-medium text-gray-900 mb-2">Activités sociales</h3>
-                        <p class="text-gray-600">
-                            Musées, lectures publiques, yoga et bien plus pour stimuler le corps et l'esprit.
-                        </p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="service-icon mx-auto mb-4">
+                        <span class="text-2xl">🎨</span>
                     </div>
-
-                    <div class="bg-gray-50 p-6 rounded-lg text-center">
-                        <div class="service-icon rounded-full mx-auto mb-4 flex items-center justify-center text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                            </svg>
-                        </div>
-                        <h3 class="title-font text-lg font-medium text-gray-900 mb-2">Répit pour aidants</h3>
-                        <p class="text-gray-600">
-                            Des moments de répit bien mérités pour les proches aidants qui en ont besoin.
-                        </p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Activités culturelles</h3>
+                    <p class="text-gray-600">Musées, lectures publiques, yoga et bien plus pour stimuler le corps et l'esprit.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="service-icon mx-auto mb-4">
+                        <span class="text-2xl">🌿</span>
                     </div>
-
-                    <div class="bg-gray-50 p-6 rounded-lg text-center">
-                        <div class="service-icon rounded-full mx-auto mb-4 flex items-center justify-center text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-                            </svg>
-                        </div>
-                        <h3 class="title-font text-lg font-medium text-gray-900 mb-2">Maintien à domicile</h3>
-                        <p class="text-gray-600">
-                            Services complémentaires pour les aînés légèrement en perte d'autonomie.
-                        </p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Répit de jour</h3>
+                    <p class="text-gray-600">Soulagement pour les proches aidants avec un accueil chaleureux.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="service-icon mx-auto mb-4">
+                        <span class="text-2xl">🏠</span>
                     </div>
-
-                    <div class="bg-gray-50 p-6 rounded-lg text-center">
-                        <div class="service-icon rounded-full mx-auto mb-4 flex items-center justify-center text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
-                            </svg>
-                        </div>
-                        <h3 class="title-font text-lg font-medium text-gray-900 mb-2">Mentorat</h3>
-                        <p class="text-gray-600">
-                            Les retraités deviennent des transmetteurs du savoir aux jeunes générations.
-                        </p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Maintien à domicile</h3>
+                    <p class="text-gray-600">Services complémentaires pour les aînés légèrement en perte d'autonomie.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="service-icon mx-auto mb-4">
+                        <span class="text-2xl">👩‍🏫</span>
                     </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Mentorat</h3>
+                    <p class="text-gray-600">Transmission du savoir entre générations, valorisant l'expérience des aînés.</p>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- Stats Section -->
-    <div class="bg-purple-600 text-white py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-                <div class="text-center">
-                    <p class="text-4xl font-extrabold">1.8M+</p>
-                    <p class="mt-2 text-sm font-medium">Québécois de 65+ ans</p>
+    <section class="py-16 bg-blue-600 text-white">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="grid md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="text-4xl font-bold mb-2">1.8M+</div>
+                    <div class="text-lg">Québécois de 65+</div>
                 </div>
-                <div class="text-center">
-                    <p class="text-4xl font-extrabold">30%</p>
-                    <p class="mt-2 text-sm font-medium">Vivent seuls</p>
+                <div>
+                    <div class="text-4xl font-bold mb-2">30%</div>
+                    <div class="text-lg">Vivent seuls</div>
                 </div>
-                <div class="text-center">
-                    <p class="text-4xl font-extrabold">84</p>
-                    <p class="mt-2 text-sm font-medium">Âge moyen d'entrée en CHSLD</p>
+                <div>
+                    <div class="text-4xl font-bold mb-2">84</div>
+                    <div class="text-lg">Âge moyen CHSLD</div>
                 </div>
-                <div class="text-center">
-                    <p class="text-4xl font-extrabold">1/3</p>
-                    <p class="mt-2 text-sm font-medium">Aidants en détresse</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Call to Action -->
-    <div id="participer" class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-purple-50 rounded-lg shadow-xl overflow-hidden">
-                <div class="pt-10 pb-12 px-6 sm:pt-16 sm:px-16 lg:py-16 lg:pr-0 xl:py-20 xl:px-20">
-                    <div class="lg:self-center">
-                        <h2 class="title-font text-3xl font-extrabold text-gray-900 sm:text-4xl">
-                            <span class="block">Prêt à nous soutenir ?</span>
-                        </h2>
-                        <p class="mt-4 text-lg leading-6 text-gray-600">
-                            Nous recherchons des partenaires, des bénévoles et du financement pour ouvrir notre première maison à Gatineau.
-                        </p>
-                        <a href="#contact" class="mt-8 bg-purple-600 border border-transparent rounded-md py-3 px-8 inline-flex items-center text-base font-medium text-white hover:bg-purple-700">
-                            Contactez-nous
-                        </a>
-                    </div>
+                <div>
+                    <div class="text-4xl font-bold mb-2">100+</div>
+                    <div class="text-lg">Familles aidées</div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- Contact Section -->
-    <div id="contact" class="py-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:text-center">
-                <h2 class="title-font text-base text-purple-600 font-semibold tracking-wide uppercase">Contact</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                    Restons en contact
-                </p>
-                <p class="mt-4 max-w-2xl text-xl text-gray-600 lg:mx-auto">
-                    Nous sommes prêts à démarrer. Aidez-nous à ouvrir la première maison.
-                </p>
-            </div>
-
-            <div class="mt-10 bg-white shadow-xl rounded-lg overflow-hidden">
-                <div class="grid grid-cols-1 lg:grid-cols-2">
-                    <div class="py-10 px-6">
-                        <h3 class="title-font text-lg font-medium text-gray-900 mb-6">Envoyez-nous un message</h3>
-                        <form class="space-y-6">
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700">Nom</label>
-                                <input type="text" id="name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-purple-500 focus:border-purple-500" />
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                                <input type="email" id="email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-purple-500 focus:border-purple-500" />
-                            </div>
-                            <div>
-                                <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
-                                <textarea id="message" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-purple-500 focus:border-purple-500"></textarea>
-                            </div>
-                            <div>
-                                <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                                    Envoyer
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="bg-purple-50 py-10 px-6">
-                        <h3 class="title-font text-lg font-medium text-gray-900 mb-6">Informations de contact</h3>
+    <section id="contact" class="py-16">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 bg-blue-600 text-white p-8">
+                        <h2 class="title-font text-2xl font-bold mb-6">Contactez-nous</h2>
                         <div class="space-y-4">
                             <div class="flex items-start">
-                                <div class="flex-shrink-0">
-                                    <svg class="h-6 w-6 text-purple-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                    </svg>
-                                </div>
-                                <div class="ml-3 text-base text-gray-600">
-                                    <p>Gatineau, Québec</p>
-                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                                <span>Renilde.mbarushimana@gmail.com</span>
                             </div>
                             <div class="flex items-start">
-                                <div class="flex-shrink-0">
-                                    <svg class="h-6 w-6 text-purple-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                                    </svg>
-                                </div>
-                                <div class="ml-3 text-base text-gray-600">
-                                    <p>contact@croisee-des-coeurs.org</p>
-                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.497a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                </svg>
+                                <span>819-329-4170</span>
+                            </div>
+                            <div class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                <span>Gatineau, Québec</span>
                             </div>
                         </div>
+                        <div class="mt-8">
+                            <h3 class="font-bold mb-4">Nous recherchons :</h3>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <span class="mr-2">•</span>
+                                    <span>Partenaires communautaires</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-2">•</span>
+                                    <span>Bénévoles engagés</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-2">•</span>
+                                    <span>Financement et local</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 p-8">
+                        <h3 class="title-font text-2xl font-bold text-gray-800 mb-6">Envoyez-nous un message</h3>
+                        <form class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-gray-700 mb-2">Nom</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 mb-2">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-gray-700 mb-2">Message</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                            </div>
+                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition w-full">Envoyer</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800">
-        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-            <div class="xl:grid xl:grid-cols-3 xl:gap-8">
-                <div class="space-y-8 xl:col-span-1">
-                    <span class="text-white title-font text-2xl font-bold">La Croisée des Cœurs</span>
-                    <p class="text-gray-300 text-base">
-                        Un pont entre les générations, une maison de vie et de sens.
-                    </p>
-                </div>
-                <div class="mt-12 grid grid-cols-1 gap-8 xl:col-span-2 xl:mt-0">
-                    <div class="md:grid md:grid-cols-3 md:gap-8">
-                        <div>
-                            <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Navigation</h3>
-                            <ul class="mt-4 space-y-4">
-                                <li><a href="#apropos" class="text-base text-gray-300 hover:text-white">À propos</a></li>
-                                <li><a href="#equipe" class="text-base text-gray-300 hover:text-white">Équipe</a></li>
-                                <li><a href="#services" class="text-base text-gray-300 hover:text-white">Services</a></li>
-                                <li><a href="#contact" class="text-base text-gray-300 hover:text-white">Contact</a></li>
-                            </ul>
-                        </div>
-                        <div class="mt-12 md:mt-0">
-                            <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Services</h3>
-                            <ul class="mt-4 space-y-4">
-                                <li><a href="#" class="text-base text-gray-300 hover:text-white">Activités sociales</a></li>
-                                <li><a href="#" class="text-base text-gray-300 hover:text-white">Répit pour aidants</a></li>
-                                <li><a href="#" class="text-base text-gray-300 hover:text-white">Maintien à domicile</a></li>
-                                <li><a href="#" class="text-base text-gray-300 hover:text-white">Mentorat</a></li>
-                            </ul>
-                        </div>
-                        <div class="mt-12 md:mt-0">
-                            <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Nous soutenir</h3>
-                            <ul class="mt-4 space-y-4">
-                                <li><a href="#" class="text-base text-gray-300 hover:text-white">Devenir partenaire</a></li>
-                                <li><a href="#" class="text-base text-gray-300 hover:text-white">Faire un don</a></li>
-                                <li><a href="#" class="text-base text-gray-300 hover:text-white">Devenir bénévole</a></li>
-                            </ul>
-                        </div>
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center">
+                        <span class="heart-icon text-2xl mr-2">❤️</span>
+                        <h2 class="title-font text-xl font-bold">La Croisée des Cœurs</h2>
                     </div>
+                    <p class="text-gray-400 mt-2">Un pont entre les générations</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                        </svg>
+                    </a>
                 </div>
             </div>
-            <div class="mt-12 border-t border-gray-700 pt-8">
-                <p class="text-base text-gray-400 text-center">
-                    © 2025 La Croisée des Cœurs. Tous droits réservés.
-                </p>
+            <div class="mt-8 text-center text-gray-400 text-sm">
+                <p>© 2023 La Croisée des Cœurs. Tous droits réservés.</p>
+                <p class="mt-2">Accueil de jour : Aînés, proches aidants, liens intergénérationnels</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor =&gt; {
+        // Simple animation for scroll to sections
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
@@ -398,7 +356,29 @@
             });
         });
 
-        // Mobile menu toggle would go here
-    </script>
+        // Mobile menu toggle functionality
+        const mobileMenuButton = document.querySelector('.md\:hidden');
+        const mobileMenu = document.createElement('div');
+        mobileMenu.className = 'hidden md:hidden bg-white w-full py-4 px-6 absolute z-10';
+        mobileMenu.innerHTML = `
+            <div class="flex flex-col space-y-4">
+                <a href="#about" class="text-gray-700 hover:text-blue-600 transition">À propos</a>
+                <a href="#team" class="text-gray-700 hover:text-blue-600 transition">L'équipe</a>
+                <a href="#services" class="text-gray-700 hover:text-blue-600 transition">Services</a>
+                <a href="#contact" class="text-gray-700 hover:text-blue-600 transition">Contact</a>
+            </div>
+        `;
+        document.querySelector('nav').appendChild(mobileMenu);
 
-</body></html>
+        let menuOpen = false;
+        mobileMenuButton.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            if (menuOpen) {
+                mobileMenu.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
