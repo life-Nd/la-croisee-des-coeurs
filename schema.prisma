@@ -1,0 +1,1337 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model ReferralBonus {
+  id             String   @id @default(dbgenerated("generate_random_string(25)"))
+  referrerId     String
+  referredUserId String
+  creditsEarned  Int
+  createdAt      DateTime @default(now())
+
+  referrer     User @relation("ReferrerBonuses", fields: [referrerId], references: [id])
+  referredUser User @relation("ReferredBonuses", fields: [referredUserId], references: [id])
+
+  @@unique([referrerId, referredUserId])
+}
+
+model Account {
+  id                String  @id @default(dbgenerated("gen_random_uuid()"))
+  userId            String
+  customerId        String?
+  type              String
+  provider          String
+  providerAccountId String  @map("providerAccountId")
+  token_type        String?
+  scope             String?
+  access_token      String?
+  refresh_token     String?
+  expires_at        Int?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model Message {
+  id              String      @id @default(dbgenerated("generate_random_string(25)"))
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  accepted        Boolean     @default(false)
+  code            String
+  comment         String
+  filepath        String
+  from            MessageRole
+  model           String
+  projectId       String
+  repoId          String
+  selectedElement Json?
+  userId          String
+
+  Project Project @relation(fields: [projectId], references: [projectId])
+  User    User    @relation(fields: [userId], references: [id])
+
+  @@index([projectId, userId])
+  @@index([userId])
+}
+
+model CreditTransaction {
+  id        String   @id @default(dbgenerated("generate_random_string(25)"))
+  userId    String
+  amount    Int
+  type      String
+  metadata  Json?
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+}
+
+model Subscription {
+  id                 String    @id @default(dbgenerated("gen_random_uuid()"))
+  userId             String    @map("user_id")
+  customerId         String    @unique @map("customerId")
+  subscriptionId     String    @unique @map("subscriptionId")
+  status             String
+  priceId            String    @map("price_id")
+  quantity           Int       @default(1)
+  currency           String
+  billingScheme      String
+  amount             Int       @default(0)
+  interval           String
+  intervalCount      Int       @map("interval_count")
+  currentPeriodStart DateTime  @map("current_period_start")
+  currentPeriodEnd   DateTime  @map("current_period_end")
+  cancelAtPeriodEnd  Boolean   @default(false) @map("cancel_at_period_end")
+  canceledAt         DateTime? @map("canceled_at")
+  createdAt          DateTime  @default(now()) @map("created_at")
+  updatedAt          DateTime  @updatedAt @map("updated_at")
+  isUsageBased       Boolean   @default(false)
+  plan               String?
+  renewsAt           DateTime? @map("renews_at")
+  resumesAt          DateTime? @map("resumes_at")
+  subscriptionItemId String
+  trialEndsAt        DateTime? @map("trial_ends_at")
+  user               User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("Subscription")
+}
+
+model HTMLTemplate {
+  id           String   @id @default(dbgenerated("gen_random_uuid()"))
+  name         String?
+  email        String?
+  createdById  String?
+  thumbnailUrl String?
+  imageUrls    String[]
+  repoUrl      String?
+  liveUrl      String?
+  usedCount    Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  tags         Json[]
+  tech         Json[]
+  pages        String[]
+  githubRepo   Json?
+}
+
+enum MessageRole {
+  data
+  user
+  assistant
+  system
+}
+
+model GuestCreditLog {
+  id          String   @id @default(dbgenerated("generate_random_string(25)"))
+  guestId     String
+  creditsUsed Int
+  model       String
+  reason      String
+  userMessage String
+  aiResponse  Json
+  tokensUsed  Int
+  metadata    Json?
+  createdAt   DateTime @default(now())
+
+  @@index([guestId])
+  @@index([createdAt])
+}
+
+model ChatMessage {
+  id          String   @id @default(dbgenerated("generate_random_string(25)"))
+  userId      String?
+  guestId     String?
+  message     String
+  creditsUsed Int
+  model       String
+  response    String?
+  tokens      Int
+  createdAt   DateTime @default(now())
+  duration    Float?
+  projectId   String?
+  filePath    String?
+  previewUrl  String?
+  fullXpath   String?
+
+  @@index([userId])
+  @@index([guestId])
+  @@index([projectId])
+  @@index([createdAt])
+}
+
+model GithubProfile {
+  id                        Int     @id @default(autoincrement())
+  login                     String
+  node_id                   String
+  avatar_url                String
+  gravatar_id               String
+  url                       String
+  html_url                  String
+  followers_url             String
+  following_url             String
+  gists_url                 String
+  starred_url               String
+  subscriptions_url         String
+  organizations_url         String
+  repos_url                 String
+  events_url                String
+  received_events_url       String
+  type                      String
+  site_admin                Boolean
+  name                      String
+  company                   String?
+  blog                      String
+  location                  String?
+  email                     String
+  hireable                  Boolean
+  bio                       String?
+  twitter_username          String?
+  public_repos              Int     @default(0)
+  public_gists              Int     @default(0)
+  followers                 Int     @default(0)
+  following                 Int     @default(0)
+  created_at                String
+  updated_at                String
+  private_gists             Int     @default(0)
+  total_private_repos       Int     @default(0)
+  owned_private_repos       Int     @default(0)
+  disk_usage                Int     @default(0)
+  collaborators             Int     @default(0)
+  two_factor_authentication Boolean
+  plan                      Json?
+  accountID                 String
+
+  createdAtDb   DateTime @default(now()) @map("created_at_db")
+  updated_at_db DateTime @updatedAt
+
+  @@index([login])
+  @@index([accountID])
+}
+
+// File type enum
+enum FileType {
+  HTML
+  CSS
+  JAVASCRIPT
+  JSON
+  MARKDOWN
+  IMAGE
+  VIDEO
+  FONT
+  OTHER
+}
+
+model DesignPage {
+  id                 String @id @default(dbgenerated("generate_random_string(25)"))
+  title              String
+  slug               String
+  description        String
+  order              Int    @default(0)
+  imagesDescriptions Json? // For the imagesDescriptions array
+
+  // Foreign key relationship
+  designProjectId String
+  designProject   DesignProject @relation(fields: [designProjectId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([designProjectId, slug]) // Ensure unique slugs within a project
+  @@index([designProjectId])
+  @@index([slug])
+  @@index([order])
+}
+
+// Supporting models
+enum DesignProjectVisibility {
+  private // Only owner can see
+  public // Listed publicly, anyone can view
+  link // Anyone with link can view
+  template // Can be used as template by others
+}
+
+enum DesignProjectStatus {
+  draft
+  queued
+  generating
+  generated
+  published
+}
+
+/// Site Plan model captures user inputs for the design process
+model DesignSitePlan {
+  projectId String        @id @map("project_id")
+  project   DesignProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  businessName     String      @map("business_name")
+  industry         String
+  audience         String
+  projectType      ProjectType @map("project_type")
+  tone             String
+  valueProposition String      @map("value_proposition")
+  keyFeatures      String[]    @map("key_features")
+  competitors      String[]
+  keywords         String[]
+  language         String?
+  exampleSites     String?     @map("example_sites")
+  otherDetails     String?     @map("other_details")
+
+  contactInfo Json?    @map("contact_info")
+  vision      String?
+  mission     String?
+  products    String[]
+  goals       String[]
+  features    String[]
+  problems    String[]
+  solutions   String[]
+  personas    Json?
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+}
+
+model DesignProjectVersion {
+  id                 String  @id @default(dbgenerated("generate_random_string(25)"))
+  projectId          String
+  label              String?
+  designDataSnapshot Json
+
+  project   DesignProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  createdAt DateTime      @default(now())
+
+  @@index([projectId])
+}
+
+model DesignProjectFork {
+  id              String @id @default(dbgenerated("generate_random_string(25)"))
+  parentProjectId String
+  childProjectId  String
+
+  parent DesignProject @relation("ParentFork", fields: [parentProjectId], references: [id], onDelete: Cascade)
+  child  DesignProject @relation("ChildFork", fields: [childProjectId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([parentProjectId, childProjectId])
+  @@index([parentProjectId])
+  @@index([childProjectId])
+}
+
+/// Design Save snapshots
+model DesignSave {
+  sessionId   String        @id @default(dbgenerated("generate_random_string(25)")) @map("session_id")
+  projectId   String        @map("project_id")
+  project     DesignProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  sessionName String        @map("session_name")
+  shareUrl    String        @map("share_url")
+  createdAt   DateTime      @default(now()) @map("created_at")
+
+  @@index([projectId])
+}
+
+/// Published Website records
+model PublishedWebsite {
+  projectId   String        @id @map("project_id")
+  project     DesignProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  url         String
+  fileCount   Int           @map("file_count")
+  files       String[]
+  pages       String[]
+  message     String
+  success     Boolean
+  publishedAt DateTime      @default(now()) @map("published_at")
+}
+
+model ProjectFile {
+  id String @id @default(dbgenerated("generate_random_string(25)"))
+
+  /// Optional link to the DesignProject
+  designProjectId String?
+  designProject   DesignProject? @relation(fields: [designProjectId], references: [id], onDelete: Cascade)
+
+  /// Optional link to the Project
+  projectId String?
+  project   Project? @relation("ProjectFiles", fields: [projectId], references: [projectId], onDelete: Cascade)
+
+  // File metadata
+  filename String
+  filepath String
+  filetype FileType
+  size     Int?
+
+  // File content
+  content String?
+  url     String?
+
+  // Versioning & flags
+  version     Int     @default(1)
+  checksum    String?
+  isGenerated Boolean @default(true)
+  isActive    Boolean @default(true)
+
+  // Relationship to file versions history
+  versions ProjectFileVersion[]
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Audit fields
+  createdById String?
+  updatedById String?
+  createdBy   User?   @relation("FilesCreated", fields: [createdById], references: [id])
+  updatedBy   User?   @relation("FilesUpdated", fields: [updatedById], references: [id])
+
+  @@unique([designProjectId, filepath])
+  @@unique([projectId, filepath])
+  @@index([designProjectId])
+  @@index([projectId])
+  @@index([filetype])
+}
+
+// Optional: File versions for history tracking
+model ProjectFileVersion {
+  id String @id @default(dbgenerated("generate_random_string(25)"))
+
+  // Foreign key to ProjectFile (renamed for clarity)
+  projectFileId String
+
+  // Version tracking
+  version Int
+
+  // Content and metadata
+  content  String
+  size     Int? // File size in bytes (matches parent ProjectFile)
+  checksum String? // For integrity checking
+
+  // Change tracking
+  changeMessage String? // Commit message or description of changes
+  changelog     String? // Optional: More detailed changelog
+
+  // Audit fields
+  createdById String? // Who made this version
+  createdBy   User?   @relation("FileVersionsCreated", fields: [createdById], references: [id])
+
+  // Relationships
+  file ProjectFile @relation(fields: [projectFileId], references: [id], onDelete: Cascade)
+
+  // Timestamps
+  createdAt DateTime @default(now())
+
+  // Constraints
+  @@unique([projectFileId, version])
+  @@index([projectFileId])
+  @@index([createdById])
+  @@index([createdAt]) // For querying recent versions
+}
+
+enum ProjectVisibility {
+  private
+  public
+  team
+}
+
+model ProjectCollaborator {
+  id        String           @id @default(dbgenerated("generate_random_string(25)"))
+  projectId String
+  userId    String
+  role      CollaboratorRole @default(viewer)
+
+  project Project @relation("ProjectCollaborations", fields: [projectId], references: [projectId], onDelete: Cascade)
+  user    User    @relation("UserProjectCollaborations", fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([projectId, userId])
+  @@index([projectId])
+  @@index([userId])
+}
+
+enum CollaboratorRole {
+  owner
+  editor
+  viewer
+}
+
+/// Deployment Status
+model DeploymentStatus {
+  projectId        String        @id @map("project_id")
+  project          DesignProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  isDeployed       Boolean       @map("is_deployed")
+  liveUrl          String        @map("live_url")
+  buildStatus      BuildStatus   @map("build_status")
+  lastDeployment   DateTime      @map("last_deployment")
+  performanceScore Int?          @map("performance_score")
+}
+
+model WebsiteTemplate {
+  id              String   @id @default(cuid())
+  name            String
+  description     String   @default("")
+  category        String   @default("general")
+  htmlContent     String   @default("") @map("html_content") @db.Text
+  cssContent      String   @default("") @map("css_content") @db.Text
+  jsContent       String   @default("") @map("js_content") @db.Text
+  previewImageUrl String?  @map("preview_image_url")
+  isFeatured      Boolean  @default(false) @map("is_featured")
+  usageCount      Int      @default(0) @map("usage_count")
+  createdAt       DateTime @default(now()) @map("created_at")
+  tags            String[] @default([])
+
+  @@map("website_templates")
+}
+
+/// Website publishing model
+model Website {
+  id           String   @id @default(cuid())
+  subdomain    String   @unique
+  htmlContent  String   @map("html_content") @db.Text
+  cssContent   String   @default("") @map("css_content") @db.Text
+  jsContent    String   @default("") @map("js_content") @db.Text
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+  isPublished  Boolean  @default(false) @map("is_published")
+  title        String   @default("")
+  description  String   @default("")
+  faviconUrl   String?  @map("favicon_url")
+  customDomain String?  @map("custom_domain")
+  viewCount    Int      @default(0) @map("view_count")
+  lastAccessed DateTime @default(now()) @map("last_accessed")
+
+  // Multi-file support
+  fileCount        Int     @default(1) @map("file_count")
+  mainPage         String  @default("index.html") @map("main_page")
+  hasMultiplePages Boolean @default(false) @map("has_multiple_pages")
+  sitemapUrl       String? @map("sitemap_url")
+  rssUrl           String? @map("rss_url")
+
+  // Relations to metrics and content
+  analytics   WebsiteAnalytics[]
+  files       WebsiteFile[]
+  performance WebsitePerformance[]
+  experiments WebsiteExperiment[]
+  goals       WebsiteGoal[]
+
+  // Business and health metrics
+  healthScore      Float? @default(100) @map("health_score")
+  seoScore         Float? @map("seo_score")
+  performanceScore Float? @map("performance_score")
+  securityScore    Float? @map("security_score")
+  conversionRate   Float? @default(0) @map("conversion_rate")
+  bounceRate       Float? @default(0) @map("bounce_rate")
+  avgSessionTime   Int?   @default(0) @map("avg_session_time")
+
+  // Audit and ownership relations
+  userId String? @map("user_id")
+  user   User?   @relation(fields: [userId], references: [id])
+
+  designProjectId String?
+  designProject   DesignProject? @relation(fields: [designProjectId], references: [id], onDelete: Cascade)
+
+  projectId String?
+  project   Project? @relation(fields: [projectId], references: [projectId], onDelete: Cascade)
+
+  @@map("websites")
+}
+
+model WebsiteFile {
+  id        String   @id @default(cuid())
+  websiteId String   @map("website_id")
+  filename  String
+  content   String   @db.Text
+  fileType  String   @map("file_type") // 'html', 'css', 'js', 'xml', 'txt', 'json', 'other'
+  fileSize  Int      @default(0) @map("file_size")
+  mimeType  String   @default("text/plain") @map("mime_type")
+  isMain    Boolean  @default(false) @map("is_main") // Whether this is the main file of its type
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  website Website @relation(fields: [websiteId], references: [id], onDelete: Cascade)
+
+  @@unique([websiteId, filename])
+  @@map("website_files")
+}
+
+model WebsiteAnalytics {
+  id         String   @id @default(cuid())
+  websiteId  String   @map("website_id")
+  visitorIp  String   @default("") @map("visitor_ip")
+  userAgent  String   @default("") @map("user_agent")
+  referrer   String   @default("")
+  pagePath   String   @default("/") @map("page_path")
+  visitedAt  DateTime @default(now()) @map("visited_at")
+  sessionId  String   @default("") @map("session_id")
+  country    String   @default("")
+  deviceType String   @default("unknown") @map("device_type")
+
+  // NEW: Enhanced user behavior
+  sessionDuration Int?    @map("session_duration") // in seconds
+  pageViewCount   Int     @default(1) @map("page_view_count")
+  scrollDepth     Int?    @map("scroll_depth") // percentage
+  bounced         Boolean @default(false) // single page visit
+  exitPage        String? @map("exit_page")
+  entryPage       String  @default("/") @map("entry_page")
+
+  // NEW: Technical metrics
+  pageLoadTime Int?    @map("page_load_time") // milliseconds
+  screenWidth  Int?    @map("screen_width")
+  screenHeight Int?    @map("screen_height")
+  timezone     String? @map("timezone")
+  language     String? @map("language")
+
+  // NEW: Engagement metrics
+  clickCount      Int     @default(0) @map("click_count")
+  timeOnPage      Int?    @map("time_on_page") // seconds
+  isReturningUser Boolean @default(false) @map("is_returning_user")
+
+  // Relations
+  website Website        @relation(fields: [websiteId], references: [id], onDelete: Cascade)
+  events  WebsiteEvent[]
+
+  @@map("website_analytics")
+}
+
+// NEW: Event tracking for detailed user interactions
+model WebsiteEvent {
+  id          String   @id @default(cuid())
+  analyticsId String   @map("analytics_id")
+  eventType   String   @map("event_type") // 'click', 'scroll', 'form_submit', 'download', etc.
+  eventValue  String?  @map("event_value") // element clicked, form name, etc.
+  timestamp   DateTime @default(now())
+  xCoordinate Int?     @map("x_coordinate")
+  yCoordinate Int?     @map("y_coordinate")
+
+  // Relations
+  analytics WebsiteAnalytics @relation(fields: [analyticsId], references: [id], onDelete: Cascade)
+
+  @@map("website_events")
+}
+
+// NEW: Performance tracking
+model WebsitePerformance {
+  id         String   @id @default(cuid())
+  websiteId  String   @map("website_id")
+  measuredAt DateTime @default(now()) @map("measured_at")
+
+  // Core Web Vitals
+  lcp Float? @map("largest_contentful_paint") // seconds
+  fid Float? @map("first_input_delay") // milliseconds
+  cls Float? @map("cumulative_layout_shift") // score
+
+  // Other performance metrics
+  ttfb             Float? @map("time_to_first_byte") // milliseconds
+  domContentLoaded Float? @map("dom_content_loaded") // milliseconds
+  windowLoad       Float? @map("window_load") // milliseconds
+
+  // Resource metrics
+  htmlSize  Int? @map("html_size") // bytes
+  cssSize   Int? @map("css_size") // bytes
+  jsSize    Int? @map("js_size") // bytes
+  imageSize Int? @map("image_size") // bytes
+
+  // Relations
+  website Website @relation(fields: [websiteId], references: [id], onDelete: Cascade)
+
+  @@map("website_performance")
+}
+
+// NEW: A/B testing and experiments
+model WebsiteExperiment {
+  id          String    @id @default(cuid())
+  websiteId   String    @map("website_id")
+  name        String
+  description String?
+  variants    Json // Store variant configurations
+  status      String    @default("draft") // draft, active, completed, paused
+  createdAt   DateTime  @default(now()) @map("created_at")
+  startedAt   DateTime? @map("started_at")
+  endedAt     DateTime? @map("ended_at")
+
+  // Relations
+  website Website @relation(fields: [websiteId], references: [id], onDelete: Cascade)
+
+  @@map("website_experiments")
+}
+
+// NEW: Conversion tracking
+model WebsiteGoal {
+  id        String   @id @default(cuid())
+  websiteId String   @map("website_id")
+  name      String
+  type      String // 'page_view', 'form_submit', 'click', 'time_on_site'
+  target    String // URL, selector, or value
+  value     Float? // monetary value if applicable
+  isActive  Boolean  @default(true) @map("is_active")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  // Relations
+  website     Website             @relation(fields: [websiteId], references: [id], onDelete: Cascade)
+  conversions WebsiteConversion[]
+
+  @@map("website_goals")
+}
+
+model WebsiteConversion {
+  id          String   @id @default(cuid())
+  goalId      String   @map("goal_id")
+  visitorId   String   @map("visitor_id") // could be session ID or user ID
+  convertedAt DateTime @default(now()) @map("converted_at")
+  value       Float? // if goal has monetary value
+
+  // Relations
+  goal WebsiteGoal @relation(fields: [goalId], references: [id], onDelete: Cascade)
+
+  @@map("website_conversions")
+}
+
+/// Enums
+enum AnalyticsProvider {
+  google
+  hotjar
+  none
+}
+
+enum BuildStatus {
+  queued
+  building
+  success
+  failed
+}
+
+enum ProjectType {
+  Website
+  WebApp
+  Mobile
+}
+
+/// Page model
+model Page {
+  id          String        @id @default(dbgenerated("generate_random_string(25)"))
+  projectId   String        @map("project_id")
+  project     DesignProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  title       String
+  slug        String
+  description String?
+  orderIndex  Int           @map("order_index")
+  html        String
+  css         String
+  js          String
+  createdAt   DateTime      @default(now()) @map("created_at")
+  updatedAt   DateTime      @updatedAt @map("updated_at")
+  Asset       Asset[]
+
+  @@unique([projectId, slug])
+  @@index([projectId])
+}
+
+/// Theme model
+model Theme {
+  projectId      String        @id @map("project_id")
+  project        DesignProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  colorPalette   Json          @map("color_palette")
+  typography     Json
+  heroContent    String        @map("hero_content")
+  featureContent String        @map("feature_content")
+  updatedAt      DateTime      @updatedAt @map("updated_at")
+}
+
+/// Asset model
+model Asset {
+  id         String        @id @default(dbgenerated("generate_random_string(25)"))
+  projectId  String        @map("project_id")
+  project    DesignProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  pageId     String?       @map("page_id")
+  page       Page?         @relation(fields: [pageId], references: [id], onDelete: SetNull)
+  storageKey String        @map("storage_key")
+  url        String
+  type       String
+  metadata   Json
+  createdAt  DateTime      @default(now()) @map("created_at")
+
+  @@index([projectId])
+  @@index([pageId])
+}
+
+/// Persona model
+model Persona {
+  id          String        @id @default(dbgenerated("generate_random_string(25)"))
+  projectId   String        @map("project_id")
+  project     DesignProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  name        String
+  description String
+  goals       String[]
+  painPoints  String[]
+
+  @@index([projectId])
+}
+
+model ImageAsset {
+  id          String   @id @default(dbgenerated("generate_random_string(25)"))
+  name        String
+  url         String
+  alt         String
+  prompt      String
+  isPublic    Boolean
+  type        String
+  owner       String
+  projectName String
+  createdAt   DateTime @default(now())
+
+  @@index([owner])
+  @@index([isPublic])
+}
+
+// ==== MERGED USER MODEL ====
+model User {
+  // Keep existing ID generation to avoid conflicts
+  id String @id @default(dbgenerated("gen_random_uuid()"))
+
+  // Existing core fields
+  name          String?
+  email         String?   @unique
+  login         String?
+  emailVerified DateTime?
+  image         String?
+  imageUrl      String?
+  jobTitle      String?
+
+  // Existing billing fields
+  customerId             String?   @unique @map("customerId")
+  stripePriceId          String?   @map("stripe_price_id")
+  stripeCurrentPeriodEnd DateTime? @map("stripe_current_period_end")
+
+  // Existing referral system
+  referralCode            String              @unique @default(dbgenerated("generate_random_string(10)"))
+  referredById            String?
+  referredBy              User?               @relation("Referrals", fields: [referredById], references: [id])
+  referrals               User[]              @relation("Referrals")
+  creditBalance           Int                 @default(0)
+  creditLog               CreditTransaction[]
+  referralBonusesGiven    ReferralBonus[]     @relation("ReferrerBonuses")
+  referralBonusesReceived ReferralBonus[]     @relation("ReferredBonuses")
+
+  // NEW: Enhanced user fields
+  role        UserRole @default(USER)
+  preferences Json? // UI preferences, notifications, etc.
+  timezone    String?  @default("UTC")
+
+  // NEW: Enhanced profile for different user types
+  profile UserProfile?
+
+  // Existing relationships
+  accounts       Account[]
+  messages       Message[]
+  projects       Project[]
+  designProjects DesignProject[]
+  subscriptions  Subscription[]
+  websites       Website[]
+
+  // File relationships
+  createdFiles ProjectFile[] @relation("FilesCreated")
+  updatedFiles ProjectFile[] @relation("FilesUpdated")
+
+  // Collaboration relationships
+  projectCollaborations       ProjectCollaborator[]       @relation("UserProjectCollaborations")
+  designProjectCollaborations DesignProjectCollaborator[] @relation("UserDesignCollaborations")
+
+  // NEW: Comment and change request relationships
+  comments       ProjectComment[] @relation("UserComments")
+  changeRequests ChangeRequest[]  @relation("UserChangeRequests")
+
+  // NEW: Activity and session tracking
+  activities UserActivity[]
+  sessions   UserSession[]
+
+  // Timestamps
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  ProjectFileVersion ProjectFileVersion[] @relation("FileVersionsCreated")
+
+  // Indexes
+  @@index([email])
+  @@index([role])
+  @@index([referralCode])
+}
+
+// ==== USER PROFILE MODEL (NEW) ====
+model UserProfile {
+  userId String @id
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  userType  UserType // BUSINESS_OWNER, DESIGNER, DEVELOPER
+  skills    String[] @default([])
+  bio       String?
+  company   String?
+  website   String?
+  portfolio String?
+
+  // Business owner specific
+  industry    String?
+  companySize String?
+
+  // Designer specific
+  designTools String[] @default([])
+  specialties String[] @default([])
+
+  // Developer specific
+  languages  String[] @default([])
+  frameworks String[] @default([])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userType])
+  @@index([industry])
+}
+
+// ==== USER ACTIVITY MODEL (NEW) ====
+model UserActivity {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  activityType ActivityType
+  resourceType ResourceType // DESIGN_PROJECT, PROJECT, FILE, etc.
+  resourceId   String
+
+  metadata    Json? // Additional context
+  description String? // Human readable description
+
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([resourceType, resourceId])
+  @@index([createdAt])
+  @@index([activityType])
+}
+
+// ==== USER SESSION MODEL (NEW) ====
+model UserSession {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  sessionToken String   @unique
+  projectId    String? // Active project
+  lastActivity DateTime @default(now())
+  isActive     Boolean  @default(true)
+
+  // Session metadata
+  userAgent String?
+  ipAddress String?
+  location  String?
+
+  createdAt DateTime  @default(now())
+  expiresAt DateTime?
+
+  @@index([userId])
+  @@index([sessionToken])
+  @@index([projectId])
+  @@index([isActive])
+}
+
+// ==== ENHANCED COLLABORATION MODELS ====
+model DesignProjectCollaborator {
+  id              String                 @id @default(cuid())
+  designProjectId String
+  userId          String
+  role            DesignCollaboratorRole @default(VIEWER)
+  permissions     DesignPermission[]     @default([])
+
+  // Invitation system
+  invitedBy  String?
+  invitedAt  DateTime?
+  acceptedAt DateTime?
+  status     InvitationStatus @default(PENDING)
+
+  designProject DesignProject @relation(fields: [designProjectId], references: [id], onDelete: Cascade)
+  user          User          @relation("UserDesignCollaborations", fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([designProjectId, userId])
+  @@index([designProjectId])
+  @@index([userId])
+  @@index([status])
+}
+
+// ==== ENHANCED COMMENT MODEL ====
+model ProjectComment {
+  id              String  @id @default(cuid())
+  designProjectId String?
+  projectId       String?
+  pageId          String?
+
+  authorId String
+  author   User   @relation("UserComments", fields: [authorId], references: [id], onDelete: Cascade)
+
+  content String
+  type    CommentType   @default(GENERAL)
+  status  CommentStatus @default(ACTIVE)
+
+  // Position for design comments
+  positionX       Float?
+  positionY       Float?
+  elementSelector String? // For code comments
+
+  // Threading
+  parentId String?
+  parent   ProjectComment?  @relation("CommentReplies", fields: [parentId], references: [id])
+  replies  ProjectComment[] @relation("CommentReplies")
+
+  // Relationships
+  designProject DesignProject? @relation(fields: [designProjectId], references: [id], onDelete: Cascade)
+  project       Project?       @relation(fields: [projectId], references: [projectId], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([designProjectId])
+  @@index([projectId])
+  @@index([authorId])
+  @@index([parentId])
+  @@index([status])
+}
+
+// ==== CHANGE REQUEST MODEL ====
+model ChangeRequest {
+  id              String  @id @default(cuid())
+  designProjectId String?
+  projectId       String?
+
+  requestedBy   String
+  requestedUser User   @relation("UserChangeRequests", fields: [requestedBy], references: [id], onDelete: Cascade)
+
+  title       String
+  description String
+  type        ChangeRequestType
+  status      ChangeRequestStatus @default(PENDING)
+  priority    RequestPriority     @default(MEDIUM)
+
+  // Change details
+  changedFiles   String[] @default([])
+  beforeSnapshot Json?
+  afterSnapshot  Json?
+
+  // Approval
+  reviewedBy  String?
+  reviewedAt  DateTime?
+  reviewNotes String?
+
+  designProject DesignProject? @relation(fields: [designProjectId], references: [id], onDelete: Cascade)
+  project       Project?       @relation(fields: [projectId], references: [projectId], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([designProjectId])
+  @@index([projectId])
+  @@index([requestedBy])
+  @@index([status])
+  @@index([priority])
+}
+
+// ==== ENUMS ====
+enum UserRole {
+  USER
+  ADMIN
+  MODERATOR
+  SUPER_ADMIN
+}
+
+enum UserType {
+  BUSINESS_OWNER
+  DESIGNER
+  DEVELOPER
+  MARKETER
+  AGENCY
+  FREELANCER
+}
+
+enum ActivityType {
+  CREATE
+  UPDATE
+  DELETE
+  COMMENT
+  SHARE
+  PUBLISH
+  COLLABORATE
+  SYNC
+  DEPLOY
+  INVITE
+  APPROVE
+  REJECT
+}
+
+enum ResourceType {
+  DESIGN_PROJECT
+  PROJECT
+  FILE
+  COMMENT
+  CHANGE_REQUEST
+  WEBSITE
+  USER
+  COLLABORATION
+}
+
+enum DesignCollaboratorRole {
+  OWNER
+  EDITOR
+  DESIGNER
+  COMMENTER
+  VIEWER
+}
+
+enum DesignPermission {
+  VIEW
+  COMMENT
+  EDIT_DESIGN
+  EDIT_CONTENT
+  MANAGE_ASSETS
+  PUBLISH
+  MANAGE_COLLABORATORS
+  DELETE
+}
+
+enum InvitationStatus {
+  PENDING
+  ACCEPTED
+  DECLINED
+  EXPIRED
+  REVOKED
+}
+
+enum CommentType {
+  GENERAL
+  DESIGN_FEEDBACK
+  CONTENT_SUGGESTION
+  TECHNICAL_ISSUE
+  APPROVAL_REQUEST
+  BUG_REPORT
+}
+
+enum CommentStatus {
+  ACTIVE
+  RESOLVED
+  ARCHIVED
+  DELETED
+}
+
+enum ChangeRequestType {
+  DESIGN_CHANGE
+  CONTENT_UPDATE
+  TECHNICAL_IMPROVEMENT
+  BUG_FIX
+  FEATURE_REQUEST
+  COPY_CHANGE
+}
+
+enum ChangeRequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  IMPLEMENTED
+  CANCELLED
+}
+
+enum RequestPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+// ==== UPDATED DESIGN PROJECT MODEL ====
+model DesignProject {
+  id           String                  @id @default(dbgenerated("generate_random_string(25)"))
+  name         String
+  description  String?
+  visibility   DesignProjectVisibility @default(private)
+  userId       String
+  thumbnailUrl String?
+  tags         String[]                @default([])
+  industry     String?
+
+  // Enhanced orchestration and routing
+  status    DesignProjectStatus @default(draft)
+  subdomain String?             @unique
+
+  // NEW: Collaboration settings
+  allowComments    Boolean @default(true)
+  allowSuggestions Boolean @default(true)
+  requireApproval  Boolean @default(false)
+
+  // NEW: Template and sharing features
+  isTemplate       Boolean @default(false)
+  templateCategory String?
+  shareToken       String? @unique
+  shareSettings    Json? // Password, expiry, etc.
+
+  // NEW: AI generation settings
+  aiSettings        Json? // AI preferences, style guides
+  generationHistory Json[] @default([])
+
+  designData Json? // TODO remove later
+
+  // Enhanced relationships
+  designSitePlan DesignSitePlan?
+  designPages    DesignPage[]
+
+  // Granular content
+  pages            Page[]
+  assets           Asset[]
+  personas         Persona[]
+  theme            Theme?
+  deploymentStatus DeploymentStatus?
+  designSaves      DesignSave[]
+  publishedWebsite PublishedWebsite?
+
+  // NEW: Collaboration features
+  collaborators  DesignProjectCollaborator[]
+  comments       ProjectComment[]
+  changeRequests ChangeRequest[]
+
+  // Analytics
+  viewCount     Int       @default(0)
+  downloadCount Int       @default(0)
+  forkCount     Int       @default(0)
+  remixCount    Int       @default(0)
+  lastViewed    DateTime?
+
+  // Versioning & forks
+  versions        DesignProjectVersion[]
+  parentForks     DesignProjectFork[]    @relation("ParentFork")
+  childForks      DesignProjectFork[]    @relation("ChildFork")
+  createdProjects Project[]              @relation("ProjectFromDesign")
+
+  user        User          @relation(fields: [userId], references: [id])
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  ProjectFile ProjectFile[]
+
+  Website Website[]
+
+  @@index([userId])
+  @@index([visibility])
+  @@index([industry])
+  @@index([createdAt])
+  @@index([isTemplate])
+  @@index([shareToken])
+  @@index([status])
+}
+
+// ==== UPDATED PROJECT MODEL ====
+model Project {
+  projectId   String  @id @default(dbgenerated("generate_random_string(25)"))
+  name        String
+  description String?
+  userId      String
+
+  // Enhanced development specific fields
+  githubRepoId        String?   @unique
+  githubUrl           String?
+  branch              String?   @default("main")
+  branchSha           String?
+  websiteUrl          String?
+  lastCommitedAt      DateTime?
+  lastCommitedBy      String?
+  lastCommitedMessage String?
+
+  // NEW: Development environment
+  devEnvironment Json? // Docker, Node version, etc.
+  buildCommand   String? @default("npm run build")
+  deployCommand  String? @default("npm run deploy")
+
+  // Project metadata
+  templateUrl  String?
+  thumbnailUrl String?
+  logoUrl      String?
+  tags         String[]          @default([])
+  tech         String[]          @default([]) // Technologies used
+  pages        String[]          @default([])
+  visibility   ProjectVisibility @default(private)
+  industry     String?
+
+  // Enhanced design source tracking
+  sourceDesignId String?
+  sourceDesign   DesignProject? @relation("ProjectFromDesign", fields: [sourceDesignId], references: [id])
+
+  // NEW: Sync status with design
+  syncStatus    SyncStatus @default(SYNCED)
+  lastSyncedAt  DateTime?
+  syncConflicts Json[]     @default([])
+
+  // Business context (from design)
+  companyName        String
+  companyDescription String
+  location           String?
+  otherDetails       String?
+  goal               String?
+  audience           String?
+  vision             String?
+  mission            String?
+  products           String?
+  layoutStyle        String?
+  primaryColor       String?
+  secondaryColor     String?
+  UIFramework        String?
+  typography         String?
+  language           String?
+  textsLength        String?
+  tone               String?
+  imagesLinks        String[]
+  videosLinks        String[]
+  sessionId          String?
+
+  // Current project data
+  projectData Json?
+
+  // NEW: Enhanced collaboration
+  collaborators  ProjectCollaborator[] @relation("ProjectCollaborations")
+  comments       ProjectComment[]
+  changeRequests ChangeRequest[]
+
+  // Relationships
+  user     User          @relation(fields: [userId], references: [id])
+  messages Message[]
+  files    ProjectFile[] @relation("ProjectFiles")
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Website   Website[]
+
+  @@index([userId])
+  @@index([sourceDesignId])
+  @@index([visibility])
+  @@index([syncStatus])
+}
+
+// ==== EXISTING MODELS (Keep as-is) ====
+enum SyncStatus {
+  SYNCED
+  SYNCING
+  CONFLICT
+  ERROR
+}
+
+enum FileSyncStatus {
+  SYNCED
+  MODIFIED
+  CONFLICT
+  DELETED
+}
